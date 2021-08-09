@@ -20,5 +20,20 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    for post in blog_posts:
+        if post["id"] == post_id:
+            title = post["title"]
+            subtitle = post["subtitle"]
+            image = post["image"]
+            date = post["date"]
+            author = post["author"]
+            body = post["body"]
+    return render_template(
+        "post.html", title=title, subtitle=subtitle, image=image, date=date, author=author, body=body
+    )
+
+
 if __name__ == "__main__":
     app.run(debug=True)
